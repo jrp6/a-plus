@@ -1,1 +1,5 @@
-<div class="alert alert-info">Test alert {% include "course/_tags.html" %}</div>
+{% for tag in tags %}
+{% if tag.alert %}
+<div class="alert alert-info">{{ tag.alert }}</div>
+{% endif %}
+{% endfor %}

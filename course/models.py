@@ -154,6 +154,10 @@ class UserTag(UrlMixin, models.Model):
     visible_to_students = models.BooleanField(default=False)
     color = ColorField(default="#CD0000",
                        help_text=_("Color that is used for this tag."))
+    alert = models.CharField(max_length=164,
+                             blank=True,
+                             help_text=_("An alert to show to users who have this usertag.")
+    )
 
     class Meta:
         ordering = ['course_instance', 'name']
