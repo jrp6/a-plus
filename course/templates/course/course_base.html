@@ -43,7 +43,7 @@
         </ol>
         {% endblock %}
         <div class="row">
-            <div class="alert alert-info">Test alert</div>
+            {% include "course/_tag_alert.html" %}
             {% block columns %}
             <div class="col-lg-9">
                 {% block coursecontent %}
