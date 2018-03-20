@@ -55,12 +55,13 @@ class CourseInstanceBaseMixin(object):
             self.instance = instance
             self.course = self.instance.course
             self.content = CachedContent(self.instance)
+            self.tags = list(self.instance.usertags.all())
             self.is_student = self.instance.is_student(user)
             self.is_assistant = self.instance.is_assistant(user)
             self.is_teacher = self.course.is_teacher(user)
             self.is_course_staff = self.is_teacher or self.is_assistant
             self.note(
-                "course", "instance", "content",
+                "course", "instance", "content", "tags",
                 "is_student", "is_assistant", "is_teacher", "is_course_staff",
             )
 
