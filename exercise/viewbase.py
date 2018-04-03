@@ -47,6 +47,15 @@ class ExerciseMixin(ExerciseBaseMixin, CourseModuleMixin):
         BaseExerciseAssistantPermission,
     )
 
+    def _get_current_tags(self):
+        """
+        Get the tags the current user has on the current course
+        """
+        profile = self.profile
+        course_instance = self.instance
+        taggings = profile.taggings.filter(course_instance=course_instance)
+        return map(lambda t: t.tag, taggings)
+
     def get_exercise_object(self):
         try:
             exercise_id = self.content.find_path(
@@ -65,7 +74,8 @@ class ExerciseMixin(ExerciseBaseMixin, CourseModuleMixin):
         self.current = cur
         self.next = nex
         self.breadcrumb = tree[1:-1]
-        self.note("now", "previous", "current", "next", "breadcrumb")
+        self.tags = self._get_current_tags()
+        self.note("now", "previous", "current", "next", "breadcrumb", 'tags')
 
     def get_summary_submissions(self, profile=None):
         self.summary = UserExerciseSummary(
