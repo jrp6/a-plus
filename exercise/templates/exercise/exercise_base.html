@@ -99,6 +99,9 @@
   </ul>
   {% endif %}
 
+  {% if 'fi' in tags %}
+  {{ "|en:<div class=\"alert alert-info\">Katsot tällä hetkellä kurssin englanninkielistä versiota.</div>|"|parse_localization|safe }}
+  {% endif %}
   {% block exercisecontent %}{% endblock %}
 </div>
 
