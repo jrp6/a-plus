@@ -89,3 +89,10 @@ class GroupsDeleteView(CourseInstanceMixin, BaseRedirectMixin, BaseTemplateView)
     def post(self, request, *args, **kwargs):
         self.group.delete()
         return self.redirect(self.instance.get_url('groups-list'))
+
+class AddUserTagView(CourseInstanceMixin, BaseRedirectMixin):
+    access_mode = ACCESS.TEACHER
+
+    def put(self, request, *args, **kwargs):
+        print("Received put request to AddUserTagView")
+        print(self, request, args, kwargs)
